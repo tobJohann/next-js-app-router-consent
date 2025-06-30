@@ -1,5 +1,6 @@
 import { ConsentObject } from './types/types.consent'
 
+
 export const data: ConsentObject = {
   essential: {
     checked: true,
