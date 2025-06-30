@@ -1,13 +1,11 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense } from 'react'
 import { GoogleTagManagerScripts } from './GoogleTagManagerScripts'
-import { trackingConfig } from '@/components/features/Consent/lib/config.tracking'
-import { grantConsentForEverything } from '@/components/features/Consent/lib/utils.tracking'
+import { trackingConfig } from '../lib/config.tracking'
+
 
 export const GoogleTagManager = () => {
-  const [isGtagLoaded, setIsGtagLoaded] = useState(false)
-  const [hasSetConsent, setHasSetConsent] = useState(false)
 
   return (
     <>

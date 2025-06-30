@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { data as defaultCookieData } from '../data'
-import { ConsentObject } from '@/components/features/Consent/types/types.consent'
-import { ConsentContext } from '@/components/features/Consent/context/ConsentContext'
-import { handleGoogleConsent } from '@/components/features/Consent/lib/utils.tracking'
-import { map } from '@/components/features/Consent/lib/map'
+import { ConsentObject } from '../types/types.consent'
+import { ConsentContext } from '../context/ConsentContext'
+import { handleGoogleConsent } from '../lib/utils.tracking'
+import { map } from '../lib/map'
 import {
   loadConsentFromStorage,
   saveConsentToStorage,
-} from '@/components/features/Consent/lib/syncLocalStorage'
+} from '../lib/syncLocalStorage'
 
 const useConsentLogic = (): ConsentContext => {
   const [data, setData] = useState(defaultCookieData)

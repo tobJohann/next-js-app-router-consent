@@ -1,6 +1,6 @@
 'use client'
 
-import { markFeatureUsage, pageview } from '@/components/features/Consent/lib/utils.tracking'
+import { markFeatureUsage, pageview } from '../lib/utils.tracking'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { FC, useEffect } from 'react'

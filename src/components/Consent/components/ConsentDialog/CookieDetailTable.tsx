@@ -1,4 +1,4 @@
-import { ConsentObject } from '@/components/features/Consent/types/types.consent'
+import { ConsentObject } from '../../types/types.consent'
 import useConsentProvider from '../../hooks/useConsentProvider'
 import {
   Typography,

@@ -4,7 +4,7 @@ import { ConsentObject } from '../../types/types.consent'
 import useConsentProvider from '../../hooks/useConsentProvider'
 import { Box, Collapse, IconButton, Stack, Typography } from '@mui/material'
 import { Add } from '@mui/icons-material'
-import CookieDetailTable from '@/components/features/Consent/components/ConsentDialog/CookieDetailTable'
+import CookieDetailTable from './CookieDetailTable'
 
 type Props = {
   label: keyof ConsentObject

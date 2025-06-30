@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import Link from 'next/link'
 import useConsent from '../../hooks/useConsentProvider'
-import CategoryAccordion from '@/components/features/Consent/components/ConsentDialog/CategoryAccordion'
+import CategoryAccordion from './CategoryAccordion'
 
 const ConsentDialog = () => {
   const { handleSubmit, handleAcceptAll, dialog } = useConsent()
