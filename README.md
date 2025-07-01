@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍪 DSGVO-konformer Cookie Consent für Next.js (App Router)
 
-## Getting Started
+Dieses Projekt demonstriert eine modulare Consent-Lösung für **Next.js (App Router)**, komplett mit **Material UI**-UI,
+**Google Consent Mode** und lokalem `localStorage`. Die Library ist vollständig **DSGVO-konform**, **theme-basiert** und
+**lizenzkostenfrei zu nutzen**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- **DSGVO-konformes Consent Banner** mit granularer Steuerung (Kategorien & Details)
+- **Google Consent Mode** Integration („analytics_storage“, „ad_storage“, etc.)
+- Vollständig auf **MUI Theme** ausgerichtet – passt sich automatisch dem Design an
+- Zustandsspeicherung via `localStorage`
+- **SEO- & Performance-freundlich**: Keine externen Scripts oder Consent-Provider
+- Modularer Aufbau – leicht in bestehende Projekte integrierbar und anpassbar
+
+---
+
+## 📦 Integration
+
+1. ConsentProvider im Layout einfügen
+
+```tsx
+import { ConsentProvider } from './context/ConsentContext'
+
+<
+ThemeProvider
+theme = { theme } >
+  < CssBaseline / >
+  < ConsentProvider >
+  { children }
+</ConsentProvider>
+</ThemeProvider>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Banner-Komponente einbinden
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```tsx
+'use client'
+import CookieConsent from './components/CookieConsent'
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+export default function Page() {
+  return (
+    <>
+      <CookieConsent/>
+      {/* Weitere Inhalte */}
+    </>
+  )
+}
+```
 
-## Learn More
+3. Google Tag Manager (optional)
+   Falls verwendet, sollte handleGoogleConsent im Tag Manager berücksichtigt werden. Der Code nutzt intern
+   `gtag('consent')`
+   mit dem Google Consent Mode.
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Konfigurierbarkeit
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Anpassung der Kategorien über data.ts
+- Styling vollständig durch Material UI Theme steuerbar
+- Unterstützung für weitere Anbieter (z. B. Facebook, Matomo) leicht erweiterbar
+- Granulare Detailsteuerung mit verschachtelten Checkboxen
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 Beispiel: Nutzung der Hooks
 
-## Deploy on Vercel
+```tsx
+'use client'
+import { useConsentDialog } from './hooks/useConsentDialog'
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+const Button = () => {
+  const dialog = useConsentDialog()
+  return <button onClick={dialog.open}>Cookie-Einstellungen</button>
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📚 Technologien
+
+- React 18
+- Next.js (App Router)
+- Material UI (v5)
+- TypeScript
+- Google Consent Mode
+- Local Storage
